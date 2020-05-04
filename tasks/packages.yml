@@ -4,6 +4,7 @@
     - htop
     - nodejs
     - python3
+    - powertop
 
 - name: Install Discord
   snap:
