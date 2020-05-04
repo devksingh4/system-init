@@ -9,8 +9,12 @@
   snap:
     name: discord
     state: present
-- name: Install VSCode Insiders
+- name: Install VSCode Insider
   snap:
     name: code-insiders
     classic: yes
     state: present
+- name: Install Authy
+  snap:
+    name: authy
+    channel: latest/beta
