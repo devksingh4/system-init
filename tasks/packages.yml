@@ -4,3 +4,13 @@
     - htop
     - nodejs
     - python3
+
+- name: Install Discord
+  snap:
+    name: discord
+    state: present
+- name: Install VSCode Insiders
+  snap:
+    name: code-insiders
+    classic: yes
+    state: present
