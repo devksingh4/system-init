@@ -1,0 +1,6 @@
+- name: Install apt packages
+  apt: name={{item}}
+  with_items:
+    - htop
+    - nodejs
+    - python3
