@@ -1,4 +1,4 @@
-# system-init
+# Ansible Playbook for Workstation Configuration
 Ansible Playbook to configure my workstation as I like it
 
 To run this playbook: 
