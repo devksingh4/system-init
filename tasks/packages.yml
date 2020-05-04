@@ -1,10 +1,10 @@
 - name: Install apt packages
   apt: 
-    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox']
+    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git']
 
-- name: Install Discord
+- name: Install Discord and Microsoft To-Do
   snap:
-    name: discord
+    name: ['discord', 'ao']
     state: present
 - name: Install VSCode Insider
   snap:
