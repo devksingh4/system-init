@@ -1,10 +1,6 @@
 - name: Install apt packages
-  apt: name={{item}}
-  with_items:
-    - htop
-    - nodejs
-    - python3
-    - powertop
+  apt: 
+    name: ['htop', 'nodejs', 'python3', 'powertop']
 
 - name: Install Discord
   snap:
