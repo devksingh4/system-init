@@ -1,6 +1,6 @@
 - name: Install apt packages
   apt: 
-    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git']
+    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git', 'docker.io', 'docker-compose']
 
 - name: Install Discord and Microsoft To-Do
   snap:
@@ -15,3 +15,9 @@
   snap:
     name: authy
     channel: latest/beta
+    
+- name: Set sudo alias for docker
+  shell: "alias docker="sudo /usr/bin/docker"" >> /home/dsingh/.bashrc
+  become: true
+  become_user: dsingh
+    
