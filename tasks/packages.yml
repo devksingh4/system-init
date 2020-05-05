@@ -2,9 +2,9 @@
   apt: 
     name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git', 'docker.io', 'docker-compose']
 
-- name: Install Discord and Microsoft To-Do
+- name: Install Discord, Microsoft To-Do, Postman
   snap:
-    name: ['discord', 'ao']
+    name: ['discord', 'ao', 'postman']
     state: present
 - name: Install VSCode Insider
   snap:
@@ -20,4 +20,3 @@
   shell: alias docker="sudo /usr/bin/docker" >> /home/dsingh/.bashrc
   become: true
   become_user: dsingh
-    
