@@ -17,7 +17,7 @@
     channel: latest/beta
     
 - name: Set sudo alias for docker
-  shell: 'alias docker="sudo /usr/bin/docker"' >> /home/dsingh/.bashrc
+  shell: alias docker="sudo /usr/bin/docker" >> /home/dsingh/.bashrc
   become: true
   become_user: dsingh
     
