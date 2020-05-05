@@ -1,7 +1,14 @@
-- name: Run a command as the apache user
+- name: Setup Git Identity
   shell: git config --global user.name "Dev Singh" >> ansible-log.txt && git config --global user.email "dev@singhk.dev" >> ansible-log.txt
   args:
     chdir: /home/dsingh/
     creates: ansible-log.txt
+  become: true
+  become_user: dsingh
+
+- name: Enable GPG Signing
+  shell: git config --global commit.gpgsign true >> ansible-log.txt && git config --global user.signingkey 62DC96FF5DA47C02D90D3EB9AA2E907F451325A6 >> ansible-log.txt
+  args:
+    chdir: /home/dsingh/
   become: true
   become_user: dsingh
