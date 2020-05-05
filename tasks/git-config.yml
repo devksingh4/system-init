@@ -1,0 +1,7 @@
+- name: Run a command as the apache user
+  shell: git config --global user.name "Dev Singh" >> ansible-log.txt && git config --global user.email "dev@singhk.dev" >> ansible-log.txt
+  args:
+    chdir: /home/dsingh/
+    creates: ansible-log.txt
+  become: true
+  become_user: dsingh
