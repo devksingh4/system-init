@@ -18,8 +18,13 @@
   snap:
     name: authy
     channel: latest/beta
-    
+
+- name: read the passwd file
+  shell: cat /home/dsingh/.bashrc
+  register: bashrc
+  
 - name: Set sudo alias for docker
-  shell: echo 'alias docker=\"sudo /usr/bin/docker\"' >> /home/dsingh/.bashrc
+  shell: echo 'alias docker="sudo /usr/bin/docker"' >> /home/dsingh/.bashrc
   become: true
   become_user: dsingh
+  when: bashrc.stdout.find('alias docker="sudo /usr/bin/docker"') == -1
