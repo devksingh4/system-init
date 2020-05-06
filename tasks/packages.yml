@@ -1,6 +1,9 @@
+- name: Accept mscorefonts EULA
+  shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+
 - name: Install apt packages
   apt: 
-    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git', 'docker.io', 'docker-compose']
+    name: ['htop', 'nodejs', 'python3', 'powertop', 'nautilus-dropbox', 'git', 'docker.io', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer', 'freeipa-client', 'oddjob-mkhomedir']
 
 - name: Install Discord, Microsoft To-Do, Postman
   snap:
@@ -17,6 +20,6 @@
     channel: latest/beta
     
 - name: Set sudo alias for docker
-  shell: alias docker="sudo /usr/bin/docker" >> /home/dsingh/.bashrc
+  shell: echo 'alias docker=\"sudo /usr/bin/docker\"' >> /home/dsingh/.bashrc
   become: true
   become_user: dsingh
