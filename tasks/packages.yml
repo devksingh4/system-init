@@ -11,12 +11,6 @@
   apt:
     name: ['apt-transport-https', 'code']
     update_cache: yes
-- name: Install snaps
-  snap:
-    name:
-      - discord
-      - ao
-      - postman
 - name: read the bashrc file 
   shell: cat /home/dsingh/.bashrc
   register: bashrc
