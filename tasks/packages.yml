@@ -19,4 +19,12 @@
   become_user: dsingh
   shell: echo 'alias docker="sudo /usr/bin/docker"' >> /home/dsingh/.bashrc
   when: bashrc.stdout.find('alias docker="sudo /usr/bin/docker"') == -1
-  
+- name: Download Discord
+  get_url:
+    url: https://discordapp.com/api/download?platform=linux&format=deb
+    dest: /home/dsingh/discord.deb
+    mode: '0755'
+- name: Install Discord
+  become: true
+  become_user: root
+  shell: dpkg -i /home/dsingh/discord.deb  && apt --fix-broken install -y
