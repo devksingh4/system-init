@@ -11,14 +11,12 @@
   apt:
     name: ['apt-transport-https', 'code']
     update_cache: yes
-- name: Install Snap packages
-  snap: 
-    name: ['discord', 'ao', 'postman']
-    state: present
-- name: Install Authy
-  snap: 
-    name: authy
-    channel: latest/beta
+- name: Install snaps
+  snap:
+    name:
+      - discord
+      - ao
+      - postman
 - name: read the bashrc file 
   shell: cat /home/dsingh/.bashrc
   register: bashrc
