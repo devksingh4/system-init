@@ -1,5 +1,5 @@
 - name: Setup Git Identity
-  shell: git config --global user.name "Dev Singh" >> ansible-log.txt && git config --global user.email "dev@singhk.dev" >> ansible-log.txt
+  shell: git config --global user.name "Dev Singh" >> ansible-log.txt && git config --global user.email "dev@devksingh.com" >> ansible-log.txt
   args:
     chdir: /home/dsingh/
     creates: ansible-log.txt
