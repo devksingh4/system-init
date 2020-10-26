@@ -7,7 +7,7 @@
       changed_when: False
 
   tasks:
-    - include: tasks/cron.yml
+    - include: tasks/users.yml
     - include: tasks/packages.yml
     - include: tasks/chrome.yml
     - include: tasks/git-config.yml
