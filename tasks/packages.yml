@@ -19,9 +19,9 @@
   become_user: dsingh
   shell: echo 'alias docker="sudo /usr/bin/docker"' >> /home/dsingh/.bashrc
   when: bashrc.stdout.find('alias docker="sudo /usr/bin/docker"') == -1
-- name: Download Discord
+- name: Download Discord Canary
   get_url:
-    url: https://discordapp.com/api/download?platform=linux&format=deb
+    url: https://dl-canary.discordapp.net/apps/linux/0.0.114/discord-canary-0.0.114.deb
     dest: /home/dsingh/discord.deb
     mode: '0755'
 - name: Install Discord
