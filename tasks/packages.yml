@@ -2,7 +2,7 @@
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 - name: Install apt packages
   apt: 
-    name: ['htop', 'nodejs', 'python3', 'powertop', 'git', 'rclone', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
+    name: ['htop', 'nodejs', 'python3', 'powertop', 'git', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
 - name: Add VSCode apt repository
   become: True
   become_user: root
