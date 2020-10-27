@@ -7,8 +7,8 @@
       changed_when: False
 
   tasks:
+    - include: tasks/zoom.yml
     - include: tasks/packages.yml
     - include: tasks/chrome.yml
     - include: tasks/git-config.yml
-    - include: tasks/zoom.yml
     - include: tasks/nonessential.yml
