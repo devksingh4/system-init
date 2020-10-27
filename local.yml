@@ -8,7 +8,7 @@
     - name: Gather package facts
       package_facts:
         manager: auto
-    - name: Check that the somefile.conf exists
+    - name: Check that the conda exists
       stat:
         path: /opt/anaconda3/bin/conda
       register: conda_installed
