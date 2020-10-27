@@ -19,14 +19,10 @@
   apt:
     name: ['apt-transport-https', 'code']
     update_cache: yes
-- name: read the bashrc file 
-  shell: cat /home/dsingh/.bashrc
-  register: bashrc
-- name: Set sudo alias for docker
+- name: Add dsingh to docker group
   become: true
-  become_user: dsingh
-  shell: echo 'alias docker="sudo /usr/bin/docker"' >> /home/dsingh/.bashrc
-  when: bashrc.stdout.find('alias docker="sudo /usr/bin/docker"') == -1
+  become_user: root
+  shell: groupadd docker && usermod -aG docker dsingh && newgrp docker
 - name: Download Discord Canary
   get_url:
     url: https://dl-canary.discordapp.net/apps/linux/0.0.114/discord-canary-0.0.114.deb
