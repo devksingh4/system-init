@@ -2,19 +2,18 @@
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 - name: Install apt packages
   apt: 
-    name: ['htop', 'nodejs', 'python3', 'powertop', 'git', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
+    name: ['htop', 'python3', 'powertop', 'git', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
 - name: Add VSCode apt repository
   become: True
   become_user: root
   shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-- name: install heroku cli via snap
-  become: true
-  become_user: root
-  command: snap install heroku --classic
-- name: install discord via snap
-  become: true
-  become_user: root
-  command: snap install discord
+- name: Install heroku snap
+  community.general.snap:
+    name: heroku
+    classic: yes
+- name: Install Discord snap
+  community.general.snap:
+    name: discord
 - name: Install VSCode
   apt:
     name: ['apt-transport-https', 'code']
