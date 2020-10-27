@@ -1,3 +1,4 @@
+---
 - name: Accept mscorefonts EULA
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
 - name: Install apt packages
