@@ -1,0 +1,7 @@
+---
+- name: Add OBS ppa
+  apt_repository:
+    repo: ppa:obsproject/obs-studio
+- name: Install OBS and related packages
+  apt: 
+    name: ['ffmpeg','obs-studio']
