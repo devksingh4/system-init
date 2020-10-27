@@ -11,7 +11,7 @@
       file:
         path: /opt/anaconda3
         state: directory
-        owner: root
+        owner: dsingh 
         mode: 755
         recurse: yes
     - name: Run the installer
@@ -21,17 +21,18 @@
         state: absent
         path: /tmp/install-anaconda.sh
     - name: Add anaconda bin to path
-      become: True
       shell: echo 'export PATH=/opt/anaconda3/bin:$PATH' >> /etc/profile
     - name: conda - read permission for all
-      become: True
       file:
         path: /opt/anaconda3
         mode: +r
         recurse: yes
     - name: conda - execution permission for all
-      become: True
       file:
         path: /opt/anaconda3/bin
         mode: +x
         recurse: yes
+    - name: conda - install numpy pandas matplotlib scipy
+      become: true
+      become_user: dsingh
+      shell: source activate base && conda install -y numpy pandas matplotlib scipy
