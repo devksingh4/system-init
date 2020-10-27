@@ -1,0 +1,2 @@
+- name: Install Zoom
+  shell: wget https://zoom.us/client/latest/zoom_amd64.deb && dpkg -i zoom_amd64.deb && apt-get --fix-broken install
