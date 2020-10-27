@@ -7,5 +7,7 @@
   become: true
   become_user: root
   shell: apt --fix-broken -y install /home/dsingh/zoom.deb
-- name: Remove Zoom deb
-  shell: rm /home/dsingh/zoom.deb
+- name: Remove the Zoom installer
+  file:
+    state: absent
+    path: /home/dsingh/zoom.deb

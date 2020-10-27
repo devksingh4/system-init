@@ -2,9 +2,12 @@
 - name: Accept mscorefonts EULA
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
   when: "'ttf-mscorefonts-installer' not in ansible_facts.packages"
-- name: Install apt packages
-  apt: 
-    name: ['htop', 'python3', 'powertop', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
+- name: Add Nodejs 12 PPA
+  shell: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+  when: "'nodejs' not in ansible_facts.packages"
+- name: Add Yarn PPA 
+  shell: curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  when: "'yarn' not in ansible_facts.packages"
 - name: Add VSCode apt repository
   shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
   when: "'code' not in ansible_facts.packages"
@@ -15,10 +18,6 @@
 - name: Install Discord snap
   snap:
     name: discord
-- name: Install VSCode
-  apt:
-    name: ['apt-transport-https', 'code']
-    update_cache: yes
   when: "'code' not in ansible_facts.packages"
 - name: Add dsingh to docker group
   shell: usermod -aG docker dsingh && newgrp docker
@@ -31,3 +30,31 @@
 - name: Install Discord
   shell: apt --fix-broken -y install /home/dsingh/discord.deb
   when: "'discord-canary' not in ansible_facts.packages"
+- name: Remove the Discord installer
+  file:
+    state: absent
+    path: /home/dsingh/discord.deb
+- name: Install apt packages
+  apt:
+    name:
+      - htop
+      - python3
+      - powertop
+      - onedrive
+      - docker.io
+      - curl
+      - docker-compose
+      - geary
+      - chrome-gnome-shell
+      - fonts-crosextra-carlito
+      - fonts-crosextra-caladea
+      - ttf-mscorefonts-installer
+      - apt-transport-https
+      - nodejs
+      - code
+      - gcc
+      - g++ 
+      - make
+      - yarn
+    update_cache: true
+
