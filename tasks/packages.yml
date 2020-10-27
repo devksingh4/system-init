@@ -1,11 +1,13 @@
 ---
 - name: Accept mscorefonts EULA
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
+  when: "'ttf-mscorefonts-installer' not in ansible_facts.packages"
 - name: Install apt packages
   apt: 
-    name: ['htop', 'python3', 'powertop', 'git', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
+    name: ['htop', 'python3', 'powertop', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
 - name: Add VSCode apt repository
   shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+  when: "'code' not in ansible_facts.packages"
 - name: Install heroku snap
   snap:
     name: heroku
@@ -17,6 +19,7 @@
   apt:
     name: ['apt-transport-https', 'code']
     update_cache: yes
+  when: "'code' not in ansible_facts.packages"
 - name: Add dsingh to docker group
   shell: usermod -aG docker dsingh && newgrp docker
 - name: Download Discord Canary
@@ -24,5 +27,7 @@
     url: https://dl-canary.discordapp.net/apps/linux/0.0.114/discord-canary-0.0.114.deb
     dest: /home/dsingh/discord.deb
     mode: '0755'
+  when: "'discord-canary' not in ansible_facts.packages"
 - name: Install Discord
   shell: apt --fix-broken -y install /home/dsingh/discord.deb
+  when: "'discord-canary' not in ansible_facts.packages"

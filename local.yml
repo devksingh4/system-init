@@ -5,10 +5,15 @@
     - name: update repositories
       apt: update_cache=yes
       changed_when: False
+    - name: Gather package facts
+      package_facts:
+        manager: auto
 
   tasks:
     - include: tasks/zoom.yml
+      when: "'zoom' not in ansible_facts.packages"
     - include: tasks/packages.yml
     - include: tasks/chrome.yml
+      when: "'google-chrome-stable' not in ansible_facts.packages"
     - include: tasks/git-config.yml
     - include: tasks/nonessential.yml
