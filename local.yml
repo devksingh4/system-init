@@ -11,3 +11,4 @@
     - include: tasks/chrome.yml
     - include: tasks/git-config.yml
     - include: tasks/zoom.yml
+    - include: tasks/nonessential.yml
