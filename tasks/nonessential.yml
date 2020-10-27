@@ -5,3 +5,10 @@
 - name: Install OBS and related packages
   apt: 
     name: ['ffmpeg','obs-studio','v4l2loopback-dkms', 'v4l2loopback-utils', 'libobs-dev', 'qtbase5-dev', 'cmake']
+- name: Add the v4l2loopback module
+  community.general.modprobe:
+    name: v4l2loopback
+    state: present
+    params: 'card_label=Virtual Camera'
+
+
