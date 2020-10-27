@@ -18,3 +18,7 @@
 - name: Install Cryptomator
   apt:
     name: ['cryptomator']
+- name: "Install Steam on Desktop"
+  apt:
+    name: ['steam']
+  when: ansible_hostname == 'CentaurusRidge'
