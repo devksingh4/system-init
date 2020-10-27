@@ -3,5 +3,3 @@
   args:
     chdir: /home/dsingh/
     creates: ansible-log.txt
-  become: true
-  become_user: dsingh

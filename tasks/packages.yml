@@ -5,8 +5,6 @@
   apt: 
     name: ['htop', 'python3', 'powertop', 'git', 'onedrive', 'docker.io', 'curl', 'docker-compose', 'geary', 'chrome-gnome-shell', 'fonts-crosextra-carlito', 'fonts-crosextra-caladea', 'ttf-mscorefonts-installer']
 - name: Add VSCode apt repository
-  become: True
-  become_user: root
   shell: curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/ && sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
 - name: Install heroku snap
   snap:
@@ -20,8 +18,6 @@
     name: ['apt-transport-https', 'code']
     update_cache: yes
 - name: Add dsingh to docker group
-  become: true
-  become_user: root
   shell: usermod -aG docker dsingh && newgrp docker
 - name: Download Discord Canary
   get_url:
@@ -29,6 +25,4 @@
     dest: /home/dsingh/discord.deb
     mode: '0755'
 - name: Install Discord
-  become: true
-  become_user: root
   shell: apt --fix-broken -y install /home/dsingh/discord.deb
