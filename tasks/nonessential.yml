@@ -1,7 +1,7 @@
 ---
-- name: Add OBS ppa
+- name: Add OBS PPA
   apt_repository:
     repo: ppa:obsproject/obs-studio
 - name: Install OBS and related packages
   apt: 
-    name: ['ffmpeg','obs-studio']
+    name: ['ffmpeg','obs-studio','v4l2loopback-dkms', 'v4l2loopback-utils', 'libobs-dev', 'qtbase5-dev']
