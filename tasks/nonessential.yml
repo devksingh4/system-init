@@ -24,3 +24,7 @@
   apt:
     name: ['steam']
   when: ansible_hostname == 'CentaurusRidge'
+- name: Set 12hr time
+  shell: gsettings set org.gnome.desktop.interface clock-format '12h'
+  become: true
+  become_user: dsingh
