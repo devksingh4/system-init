@@ -28,3 +28,7 @@
   shell: gsettings set org.gnome.desktop.interface clock-format '12h'
   become: true
   become_user: dsingh
+- name: Set dark mode
+  shell: gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+  become: true
+  become_user: dsingh
