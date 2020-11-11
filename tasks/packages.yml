@@ -20,7 +20,7 @@
     name: discord
   when: "'code' not in ansible_facts.packages"
 - name: Add dsingh to docker group
-  shell: groupadd docker && usermod -aG docker dsingh && newgrp docker
+  shell: groupadd -f docker && usermod -aG docker dsingh && newgrp docker
 - name: Download Discord Canary
   get_url:
     url: https://dl-canary.discordapp.net/apps/linux/0.0.114/discord-canary-0.0.114.deb
