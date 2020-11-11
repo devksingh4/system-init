@@ -9,4 +9,5 @@ mkdir -p build && cd build
 cmake -DLIBOBS_INCLUDE_DIR="../../obs-studio/libobs" -DCMAKE_INSTALL_PREFIX=/usr ..
 make -j4
 make install
+mkdir -p /usr/lib/x86_64-linux-gnu/obs-plugins/
 cp /usr/lib/obs-plugins/v4l2sink.so /usr/lib/x86_64-linux-gnu/obs-plugins/
