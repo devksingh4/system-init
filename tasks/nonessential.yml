@@ -29,6 +29,6 @@
   become: true
   become_user: dsingh
 - name: Set dark mode
-  shell: gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+  shell: gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-dark'
   become: true
   become_user: dsingh
