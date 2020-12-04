@@ -21,6 +21,5 @@
     - include: tasks/chrome.yml
       when: "'google-chrome-stable' not in ansible_facts.packages"
     - include: tasks/git-config.yml
-    - include: tasks/nonessential.yml
     - include: tasks/conda.yml
       when: not conda_installed.stat.exists
