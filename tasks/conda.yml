@@ -32,7 +32,3 @@
         path: /opt/anaconda3/bin
         mode: +x
         recurse: yes
-    - name: conda - install numpy pandas matplotlib scipy
-      become: true
-      become_user: dsingh
-      shell: source activate base && conda install -y numpy pandas matplotlib scipy
