@@ -37,6 +37,9 @@
   file:
     state: absent
     path: /home/dsingh/discord.deb
+- name: Add onedrive PPA
+  apt_repository:
+    repo: ppa:yann1ck/onedrive
 - name: Install apt packages
   apt:
     name:
