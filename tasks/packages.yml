@@ -2,8 +2,8 @@
 - name: Accept mscorefonts EULA
   shell: echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
   when: "'ttf-mscorefonts-installer' not in ansible_facts.packages"
-- name: Add Nodejs 12 PPA
-  shell: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+- name: Add Nodejs Current PPA
+  shell: curl -sL https://deb.nodesource.com/setup_current.x | sudo -E bash -
   when: "'nodejs' not in ansible_facts.packages"
 - name: Add Yarn PPA 
   shell: curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
