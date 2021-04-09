@@ -26,7 +26,7 @@
 - name: Download Discord Canary
   get_url:
     url: https://discord.com/api/download/canary?platform=linux&format=deb
-    follow: all
+    follow: yes
     dest: /home/dsingh/discord.deb
     mode: '0755'
   when: "'discord-canary' not in ansible_facts.packages"
