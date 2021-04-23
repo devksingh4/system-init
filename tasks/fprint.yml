@@ -1,0 +1,16 @@
+---
+- name: Remove current fprintd
+  apt:
+    name: fprintd
+    state: absent
+- name: Add T480 fprintd
+  apt_repository:
+    repo: ppa:uunicorn/open-fprintd
+- name: Install fprintd packages
+  apt:
+    name:
+      - open-fprintd
+      - fprintd-clients
+      - python3-validity
+    update_cache: true
+
