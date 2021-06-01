@@ -22,8 +22,8 @@
       when: "'google-chrome-stable' not in ansible_facts.packages"
     - include: tasks/fprint.yml
       when: ansible_hostname == 'AndroLake'
-    - include: tasks/tpm2.yml
-      when: ansible_hostname == 'AndroLake'
+#     - include: tasks/tpm2.yml
+#       when: ansible_hostname == 'AndroLake'
     - include: tasks/git-config.yml
     - include: tasks/conda.yml
       when: not conda_installed.stat.exists
