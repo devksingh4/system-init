@@ -19,7 +19,7 @@ function Install-WinGet {
 		Add-AppxPackage -Path $latestRelease.browser_download_url
 }
 # check if winget is available
-winget --version
+$winget = winget --version
 
 if($?)
 {
@@ -30,7 +30,7 @@ else
   Write-Host 'WinGet is not installed, installing now!';
   Install-WinGet
 }
-winget --version
+$winget = winget --version
 if(-not $?)
 {
   throw 'WinGet is still not installed, please install and try again!';
