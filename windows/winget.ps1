@@ -6,8 +6,21 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
     Exit
   }
 }
+function Install-IfUnavailable {
+  param(
+  [Parameter (Mandatory = $true)] [String] $package
+  )
+  $check_output = [string](winget list -q $package)
+  $installed = -not ($check_output -like "*No installed package found*")
+  if ($installed) {
+    Write-Host "$($package) is already installed, skipping!"
+  } else {
+    winget install -e --id $package
+  }
+}
 (
   "Google.Chrome",
+  "CPUID.CPU-Z",
   "Mozilla.Firefox",
   "Discord.Discord",
   "Discord.Discord.Canary",
@@ -33,5 +46,6 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
   "WireGuard.WireGuard",
   "Zoom.Zoom",
   "CPUID.HWMonitor",
-  "GitHub.GitHubDesktop"
-) | ForEach-Object { winget install --accept-source-agreements  -e --id $_ }
+  "GitHub.GitHubDesktop",
+  "Yarn.Yarn"
+) | ForEach-Object { Install-IfUnavailable -package $_ }
