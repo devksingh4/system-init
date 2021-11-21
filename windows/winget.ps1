@@ -10,12 +10,12 @@ function Install-IfUnavailable {
   param(
   [Parameter (Mandatory = $true)] [String] $package
   )
-  $check_output = [string](winget list -q $package)
+  $check_output = [string](winget list --exact -q $package)
   $installed = -not ($check_output -like "*No installed package found*")
   if ($installed) {
     Write-Host "$($package) is already installed, skipping!"
   } else {
-    winget install -e --id $package
+    winget install --exact --silent --id $package
   }
 }
 (
