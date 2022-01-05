@@ -12,7 +12,7 @@
     state: present
     params: 'card_label=Virtual Camera'
 - name: Install obs-v4l2 virtual camera output
-  shell: curl https://raw.githubusercontent.com/devksingh4/system-init/master/files/obs-virtcam.sh | /bin/bash
+  shell: curl https://raw.githubusercontent.com/devksingh4/system-init/master/linux/files/obs-virtcam.sh | /bin/bash
 - name: Add Cryptomator PPA
   apt_repository:
     repo: ppa:sebastian-stenzel/cryptomator
