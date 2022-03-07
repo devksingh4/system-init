@@ -23,7 +23,6 @@ function Install-IfUnavailable {
   "CPUID.CPU-Z",
   "Mozilla.Firefox",
   "Discord.Discord",
-  "Discord.Discord.Canary",
   "OpenJS.Nodejs.LTS",
   "Microsoft.WindowsTerminal",
   "Cryptomator.Cryptomator",
