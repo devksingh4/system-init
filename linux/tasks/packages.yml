@@ -18,10 +18,6 @@
 - name: Install Discord snap
   snap:
     name: discord
-- name: Install Discord Canary snap
-  snap:
-    name: discord-canary
-    channel: latest/edge
 - name: Install Spotify snap
   snap:
     name: spotify
