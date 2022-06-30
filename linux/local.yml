@@ -10,7 +10,7 @@
         manager: auto
     - name: Check that the conda exists
       stat:
-        path: /opt/anaconda3/bin/conda
+        path: /home/dsingh/miniconda3/bin/conda
       register: conda_installed
     
 
@@ -19,8 +19,13 @@
       when: "'zoom' not in ansible_facts.packages"
     - include: tasks/packages.yml
     - include: tasks/discord.yml
+      when: "'discord' not in ansible_facts.packages"
     - include: tasks/chrome.yml
       when: "'google-chrome-stable' not in ansible_facts.packages"
     - include: tasks/git-config.yml
+      become: true
+      become_user: dsingh
     - include: tasks/conda.yml
+      become: true
+      become_user: dsingh
       when: not conda_installed.stat.exists
