@@ -42,5 +42,6 @@
       - make
       - yarn
       - build-essential
+      - zsh
     update_cache: true
 
