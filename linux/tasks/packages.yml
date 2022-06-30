@@ -15,24 +15,17 @@
   snap:
     name: heroku
     classic: yes
-- name: Install Discord snap
-  snap:
-    name: discord
 - name: Install Spotify snap
   snap:
     name: spotify
 - name: Add dsingh to docker group
   shell: groupadd -f docker && usermod -aG docker dsingh && newgrp docker
-- name: Add onedrive PPA
-  apt_repository:
-    repo: ppa:yann1ck/onedrive
 - name: Install apt packages
   apt:
     name:
       - htop
       - python3
       - powertop
-      - onedrive
       - docker.io
       - curl
       - docker-compose
