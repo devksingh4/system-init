@@ -1,0 +1,2 @@
+- name: Install Discord
+  shell: wget https://discord.com/api/download?platform=linux&format=deb && dpkg -i discord* && apt-get --fix-broken install
