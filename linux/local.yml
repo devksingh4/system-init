@@ -18,6 +18,7 @@
     - include: tasks/zoom.yml
       when: "'zoom' not in ansible_facts.packages"
     - include: tasks/packages.yml
+    - include: tasks/discord.yml
     - include: tasks/chrome.yml
       when: "'google-chrome-stable' not in ansible_facts.packages"
     - include: tasks/git-config.yml
