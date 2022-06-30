@@ -44,4 +44,7 @@
       - build-essential
       - zsh
     update_cache: true
-
+- name: Remove Microsoft GPG Key
+  ansible.builtin.file:
+    path: packages.microsoft.gpg
+    state: absent
