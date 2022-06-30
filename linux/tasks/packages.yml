@@ -23,6 +23,7 @@
 - name: Install apt packages
   apt:
     name:
+      - git
       - htop
       - python3
       - powertop
@@ -42,7 +43,6 @@
       - make
       - yarn
       - build-essential
-      - zsh
     update_cache: true
 - name: Remove Microsoft GPG Key
   ansible.builtin.file:

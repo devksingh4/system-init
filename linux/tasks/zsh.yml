@@ -1,0 +1,23 @@
+---
+- name: Check if Oh My Zsh exists
+  stat:
+    path: /home/dsingh/.oh-my-zsh/oh-my-zsh.sh
+  register: omz_installed
+- name: Install zsh
+  become: true
+  apt:
+    name: zsh
+- name: Install Oh My Zsh only if not installed
+  become_user: dsingh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  when: not omz_installed.stat.exists
+- name: Copy .zshrc
+  ansible.builtin.copy:
+    src: ../files/.zshrc
+    dest: /home/dsingh/.zshrc
+    owner: dsingh
+    mode: '0644'
+- name: change user shell to zsh 
+  user:
+    name: dsingh
+    shell: /bin/bash

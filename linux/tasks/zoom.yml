@@ -1,13 +1,11 @@
 - name: Download Zoom
   get_url:
     url: https://zoom.us/client/latest/zoom_amd64.deb
-    dest: /home/dsingh/zoom.deb
+    dest: /tmp/zoom.deb
     mode: '0755'
 - name: Install Zoom
-  become: true
-  become_user: root
-  shell: apt --fix-broken -y install /home/dsingh/zoom.deb
+  shell: apt --fix-broken -y install /tmp/zoom.deb
 - name: Remove the Zoom installer
   file:
     state: absent
-    path: /home/dsingh/zoom.deb
+    path: /tmp/zoom.deb

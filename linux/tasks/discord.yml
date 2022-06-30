@@ -1,2 +1,11 @@
+- name: Download Discord
+  get_url:
+    url: https://discord.com/api/download?platform=linux&format=deb 
+    dest: /tmp/discord.deb
+    mode: '0755'
 - name: Install Discord
-  shell: wget https://discord.com/api/download?platform=linux&format=deb && dpkg -i discord* && apt-get --fix-broken install
+  shell: apt --fix-broken -y install /tmp/discord.deb
+- name: Remove the Discord installer
+  file:
+    state: absent
+    path: /tmp/discord.deb

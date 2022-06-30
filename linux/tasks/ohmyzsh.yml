@@ -1,9 +1,0 @@
----
-- name: Install Oh My Zsh
-  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-- name: Copy .zshrc
-  ansible.builtin.copy:
-    src: ../files/.zshrc
-    dest: /home/dsingh/.zshrc
-    owner: dsingh
-    mode: '0644'
