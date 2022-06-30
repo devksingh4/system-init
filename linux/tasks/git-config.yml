@@ -1,6 +1,0 @@
-- name: Setup Git Identity
-  become: true
-  become_user: dsingh
-  shell: git config --global user.name "Dev Singh" && git config --global user.email "dev@devksingh.com"
-  args:
-    chdir: /home/dsingh/

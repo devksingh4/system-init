@@ -43,6 +43,7 @@
       - make
       - yarn
       - build-essential
+      - steam
     update_cache: true
 - name: Remove Microsoft GPG Key
   ansible.builtin.file:

@@ -1,0 +1,19 @@
+- name: Setup Git Identity
+  become: true
+  become_user: dsingh
+  shell: git config --global user.name "Dev Singh" && git config --global user.email "dev@devksingh.com"
+  args:
+    chdir: /home/dsingh/
+- name: Set 12hr time
+  shell: gsettings set org.gnome.desktop.interface clock-format '12h'
+  become: true
+  become_user: dsingh
+- name: Set dark mode
+  shell: gsettings set org.gnome.desktop.interface gtk-theme 'Yaru-blue-dark'
+  become: true
+  become_user: dsingh
+- name: Prefer dark mode
+  shell: gsettings set org.gnome.desktop.interface color-scheme prefer-dark 
+  become: true
+  become_user: dsingh
+
