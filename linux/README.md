@@ -5,4 +5,4 @@ To run this playbook:
 `sudo apt install -y ansible git curl && sudo ansible-pull -U https://github.com/devksingh4/system-init.git`
 
 # Manual Steps
-* [TPM2 LUKS-based encryption](https://run.tournament.org.il/ubuntu-20-04-and-tpm2-encrypted-system-disk/)
+* Set ZSH to default shell: `chsh -s $(which zsh)` **without** sudo
