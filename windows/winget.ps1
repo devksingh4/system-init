@@ -47,5 +47,6 @@ function Install-IfUnavailable {
   "Zoom.Zoom",
   "CPUID.HWMonitor",
   "GitHub.GitHubDesktop",
-  "Yarn.Yarn"
+  "Yarn.Yarn",
+  "tailscale.tailscale"
 ) | ForEach-Object { Install-IfUnavailable -package $_ }
