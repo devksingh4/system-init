@@ -15,6 +15,7 @@ function Install-IfUnavailable {
   if ($installed) {
     Write-Host "$($package) is already installed, skipping!"
   } else {
+    Write-Host "Installing $($package)..."
     winget install --exact --silent --id $package
   }
 }
