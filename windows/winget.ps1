@@ -48,5 +48,6 @@ function Install-IfUnavailable {
   "CPUID.HWMonitor",
   "GitHub.GitHubDesktop",
   "Yarn.Yarn",
-  "tailscale.tailscale"
+  "tailscale.tailscale",
+  "RiotGames.Valorant.NA"
 ) | ForEach-Object { Install-IfUnavailable -package $_ }
