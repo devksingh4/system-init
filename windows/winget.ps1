@@ -25,6 +25,7 @@ function Install-IfUnavailable {
   "Mozilla.Firefox",
   "Discord.Discord",
   "OpenJS.NodeJS.LTS",
+  "Docker.DockerDesktop",
   "Microsoft.WindowsTerminal",
   "Cryptomator.Cryptomator",
   "Git.Git",
