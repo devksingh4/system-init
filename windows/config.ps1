@@ -14,7 +14,7 @@ start-process -filepath "C:\Windows\Resources\Themes\dark.theme"; timeout /t 3; 
 
 # Clear Taskbar
 $path =  'C:\Users\dsingh\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\'
-if (Test-Path $file) {
+if (Test-Path $path) {
   Remove-Item -Recurse -Force $path
 }
 
