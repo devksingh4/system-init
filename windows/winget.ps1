@@ -32,7 +32,7 @@ function Install-IfUnavailable {
   "9NCBCSZSJRSB", # spotify
   "OBSProject.OBSStudio",
   "Microsoft.PowerToys",
-  "SlackTechnologies.Slack",
+  "9WZDNCRDK3WP", # slack
   "Valve.Steam",
   "Microsoft.VisualStudioCode",
   "WiresharkFoundation.Wireshark",
@@ -44,6 +44,7 @@ function Install-IfUnavailable {
   "Anaconda.Miniconda3",
   "Notepad++.Notepad++",
   "VideoLAN.VLC",
+  "Apple.iTunes",
   "WinSCP.WinSCP",
   "WireGuard.WireGuard",
   "Zoom.Zoom",
