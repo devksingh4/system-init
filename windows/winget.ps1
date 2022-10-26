@@ -55,5 +55,6 @@ function Install-IfUnavailable {
   "qBittorrent.qBittorrent",
   "RiotGames.Valorant.NA",
   "Balena.Etcher",
+  "Windscribe.Windscribe",
   "9PC3H3V7Q9CH" # Rufus
 ) | ForEach-Object { Install-IfUnavailable -package $_ }
