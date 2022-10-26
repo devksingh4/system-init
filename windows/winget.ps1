@@ -35,7 +35,6 @@ function Install-IfUnavailable {
   "Spotify.Spotify",
   "Microsoft.VisualStudioCode",
   "WiresharkFoundation.Wireshark",
-  "Wireguard.Wireguard",
   "7zip.7zip",
   "TimKosse.FileZilla.Client",
   "Google.Drive",
