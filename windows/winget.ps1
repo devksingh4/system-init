@@ -29,6 +29,8 @@ function Install-IfUnavailable {
   "Microsoft.WindowsTerminal",
   "Cryptomator.Cryptomator",
   "Git.Git",
+  "9NCBCSZSJRSB", # spotify
+  "OBSProject.OBSStudio",
   "Microsoft.PowerToys",
   "SlackTechnologies.Slack",
   "Valve.Steam",
