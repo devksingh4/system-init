@@ -7,4 +7,4 @@ if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdent
   }
 }
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux -NoRestart
-winget install --accept-package-agreements --exact --silent --id 9NBLGGH4MSV6
+winget install --accept-package-agreements --exact --silent --id 9PDXGNCFSCZV
