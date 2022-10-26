@@ -52,5 +52,6 @@ function Install-IfUnavailable {
   "GitHub.GitHubDesktop",
   "Yarn.Yarn",
   "tailscale.tailscale",
+  "qBittorrent.qBittorrent",
   "RiotGames.Valorant.NA"
 ) | ForEach-Object { Install-IfUnavailable -package $_ }
