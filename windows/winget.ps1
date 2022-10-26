@@ -34,7 +34,6 @@ function Install-IfUnavailable {
   "Microsoft.PowerToys",
   "SlackTechnologies.Slack",
   "Valve.Steam",
-  "Spotify.Spotify",
   "Microsoft.VisualStudioCode",
   "WiresharkFoundation.Wireshark",
   "7zip.7zip",
@@ -53,5 +52,7 @@ function Install-IfUnavailable {
   "Yarn.Yarn",
   "tailscale.tailscale",
   "qBittorrent.qBittorrent",
-  "RiotGames.Valorant.NA"
+  "RiotGames.Valorant.NA",
+  "Balena.Etcher",
+  "9PC3H3V7Q9CH" # Rufus
 ) | ForEach-Object { Install-IfUnavailable -package $_ }
