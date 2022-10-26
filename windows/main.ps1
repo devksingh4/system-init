@@ -38,8 +38,9 @@ if(-not $?)
 
 $rootPath = "https://raw.githubusercontent.com/devksingh4/system-init/master/windows/"
 $scriptList = @(
-    'winget.ps1'
-    'wsl.ps1'
+    'winget.ps1',
+    'wsl.ps1',
+    'config.ps1'
 );
 foreach ($script in $scriptList) {
   Invoke-Expression ((New-Object System.Net.WebClient).DownloadString($rootPath + $script))
