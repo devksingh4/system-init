@@ -18,6 +18,7 @@
       - cyberduck
       - postman
       - hpedrorodrigues/tools/dockutil
+      - bitwarden
     brew_packages:
       - tailscale
       - mas
@@ -61,6 +62,9 @@
       - name: Notes
         path: "/System/Applications/Notes.app/"
         pos: 9
+      - name: Terminal
+        path: "/System/Applications/Utilities/Terminal.app/"
+        pos: 10
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
