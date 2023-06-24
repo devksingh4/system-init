@@ -1,0 +1,109 @@
+---
+- name: Install MacOS Packages
+  hosts: localhost
+  become: false
+  vars:
+    brew_cask_packages:
+      - docker
+      - firefox
+      - google-chrome
+      - google-drive
+      - discord
+      - spotify
+      - visual-studio-code
+      - betterdisplay
+      - rectangle
+      - mouse-fix
+      - microsoft-office
+      - cyberduck
+      - postman
+      - hpedrorodrigues/tools/dockutil
+    brew_packages:
+      - tailscale
+      - mas
+    mas_packages: 
+      - 497799835 # xcode
+
+    upgrade_homebrew_packages: true
+  
+    dockitems_remove:
+      - Launchpad
+      - TV
+      - Podcasts
+      - 'App Store'
+      - Music
+
+    dockitems_persist:
+      - name: Google Chrome
+        path: "/Applications/Google Chrome.app/"
+        pos: 1
+      - name: Messages
+        path: "/Applications/Messages.app/"
+        pos: 2
+      - name: Spotify
+        path: "/Applications/Spotify.app/"
+        pos: 3
+      - name: Mail
+        path: "/System/Applications/Mail.app/"
+        pos: 4
+      - name: Discord
+        path: "/Applications/Discord.app/"
+        pos: 5
+      - name: Visual Studio Code
+        path: "/Applications/Visual Studio Code.app"
+        pos: 6
+      - name: Photos
+        path: "/System/Applications/Mail.app/"
+        pos: 7
+      - name: Calendar
+        path: "/System/Applications/Mail.app/"
+        pos: 8
+      - name: Notes
+        path: "/System/Applications/Notes.app/"
+        pos: 9
+
+  pre_tasks:
+    - name: Ensuring Homebrew Is Installed
+      stat:
+        path: /opt/homebrew/bin/brew
+      register: homebrew_check
+
+    - name: Updating Homebrew
+      homebrew:
+        update_homebrew: true
+      when: homebrew_check.stat.exists
+
+    - name: Upgrading Homebrew Packages
+      homebrew:
+        upgrade_all: "{{ upgrade_homebrew_packages }}"
+      register: result
+      until: result is successful
+      when: homebrew_check.stat.exists
+
+    - name: Workaround to have sudo rights until timestamp_timeout is raised
+      command: "echo hi"
+      become: yes
+
+    - name: Installing Homebrew Cask Packages
+      shell: /opt/homebrew/bin/brew install --cask {{item}}
+      with_items: "{{ brew_cask_packages }}"
+
+    - name: Workaround to have sudo rights until timestamp_timeout is raised
+      command: "echo hi"
+      become: yes
+
+    - name: Installing Homebrew Packages
+      shell: /opt/homebrew/bin/brew install {{item}}
+      with_items: "{{ brew_packages }}"
+
+    - name: Workaround to have sudo rights until timestamp_timeout is raised
+      command: "echo hi"
+      become: yes
+
+    - name: Installing Mac App Store Packages
+      shell: mas install {{item}}
+      with_items: "{{ mas_packages }}"
+
+
+  roles:
+    - geerlingguy.mac.dock
