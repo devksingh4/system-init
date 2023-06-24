@@ -53,7 +53,7 @@
         path: "/Applications/Visual Studio Code.app"
         pos: 6
       - name: Photos
-        path: "/System/Applications/Mail.app/"
+        path: "/System/Applications/Photos.app/"
         pos: 7
       - name: Calendar
         path: "/System/Applications/Mail.app/"
