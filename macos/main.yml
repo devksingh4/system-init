@@ -30,6 +30,7 @@
       - gpg
       - gpg2
       - pinetry-mac
+      - nvm
     # mas_packages: 
     #   - 497799835 # xcode
     mas_packages: []
