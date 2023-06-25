@@ -133,6 +133,7 @@
 
     - name: Setup macOS defaults
       shell: |
+        mkdir ~/.nvm
         defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
         defaults write NSGlobalDomain AppleShowAllExtensions -bool true
         defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
