@@ -19,11 +19,16 @@
       - postman
       - hpedrorodrigues/tools/dockutil
       - bitwarden
+      - messenger
+      - miniconda
     brew_packages:
       - tailscale
       - mas
-    mas_packages: 
-      - 497799835 # xcode
+      - nano
+      - wget
+    # mas_packages: 
+    #   - 497799835 # xcode
+    mas_packages: []
 
     upgrade_homebrew_packages: true
   
@@ -50,21 +55,24 @@
       - name: Discord
         path: "/Applications/Discord.app/"
         pos: 5
+      - name: Messenger
+        path: "/Applications/Messenger.app/"
+        pos: 6
       - name: Visual Studio Code
         path: "/Applications/Visual Studio Code.app"
-        pos: 6
+        pos: 7
       - name: Photos
         path: "/System/Applications/Photos.app/"
-        pos: 7
+        pos: 8
       - name: Calendar
         path: "/System/Applications/Mail.app/"
-        pos: 8
+        pos: 9
       - name: Notes
         path: "/System/Applications/Notes.app/"
-        pos: 9
+        pos: 10
       - name: Terminal
         path: "/System/Applications/Utilities/Terminal.app/"
-        pos: 10
+        pos: 11
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
@@ -108,6 +116,10 @@
       shell: mas install {{item}}
       with_items: "{{ mas_packages }}"
 
+    - name: Setup .zshrc
+      ansible.builtin.template:
+        src: files/.zshrc.j2
+        dest: /Users/{{ ansible_user_id }}/.zshrc
 
   roles:
     - geerlingguy.mac.dock
