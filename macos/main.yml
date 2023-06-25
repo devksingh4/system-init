@@ -27,6 +27,9 @@
       - mas
       - nano
       - wget
+      - gpg
+      - gpg2
+      - pinetry-mac
     # mas_packages: 
     #   - 497799835 # xcode
     mas_packages: []
