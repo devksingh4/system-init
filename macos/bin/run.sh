@@ -6,7 +6,7 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 if [[ ":$PATH:" == *":/opt/homebrew/bin:"* ]]; then
   echo "Your path is correctly set"
 else
-    echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zsh_rc && source ~/.zsh_rc
+    echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.zshrc && source ~/.zshrc
 fi
 /opt/homebrew/bin/brew install ansible
 ansible-galaxy install -r requirements.yml

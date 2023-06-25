@@ -121,5 +121,9 @@
         src: files/.zshrc.j2
         dest: /Users/{{ ansible_user_id }}/.zshrc
 
+    - name: Setup docker to use SSH context by default
+      shell: docker context create lab --docker "host=ssh://dsingh@lab.ad.devksingh.com" && docker context use lab
+      register: drc
+      ignore_errors: true # if the context already exists then returns 1 but that's ok
   roles:
     - geerlingguy.mac.dock
