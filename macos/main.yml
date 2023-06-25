@@ -1,6 +1,7 @@
 ---
 - name: Install MacOS Packages
   hosts: localhost
+  connection: local
   become: false
   vars:
     brew_cask_packages:
@@ -125,5 +126,21 @@
       shell: docker context create lab --docker "host=ssh://dsingh@lab.ad.devksingh.com" && docker context use lab
       register: drc
       ignore_errors: true # if the context already exists then returns 1 but that's ok
+
+    - name: Setup macOS defaults
+      shell: |
+        defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+        defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+        defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true 
+        defaults write com.apple.dock wvous-br-corner -int 0
+        defaults write com.apple.dock wvous-br-modifier -int 0
+        defaults write com.apple.dock wvous-tr-corner -int 0
+        defaults write com.apple.dock wvous-tr-modifier -int 0
+        defaults write com.apple.dock wvous-bl-corner -int 0
+        defaults write com.apple.dock wvous-bl-modifier -int 0
+        defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
+        defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool false
+  
   roles:
     - geerlingguy.mac.dock
