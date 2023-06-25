@@ -126,6 +126,11 @@
         src: files/.zshrc.j2
         dest: /Users/{{ ansible_user_id }}/.zshrc
 
+    - name: Setup .ssh/config
+      ansible.builtin.template:
+        src: files/ssh_config.j2
+        dest: /Users/{{ ansible_user_id }}/.ssh/config
+
     - name: Setup docker to use SSH context by default
       shell: docker context create lab --docker "host=ssh://dsingh@lab.ad.devksingh.com" && docker context use lab
       register: drc
