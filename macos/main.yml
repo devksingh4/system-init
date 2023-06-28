@@ -150,6 +150,6 @@
         defaults write com.apple.dock wvous-bl-modifier -int 0
         defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
         defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool false
-  
+        defaults write com.apple.dock autohide-time-modifier -float 0.3
   roles:
     - geerlingguy.mac.dock
