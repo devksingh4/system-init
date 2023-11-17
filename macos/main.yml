@@ -1,4 +1,4 @@
-  ---
+---
 - name: Install MacOS Packages
   hosts: localhost
   connection: local
