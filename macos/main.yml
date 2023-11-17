@@ -32,7 +32,7 @@
       - wget
       - gpg
       - gpg2
-      - pinetry-mac
+      - pinentry-mac
       - nvm
       - aws-sam-cli
       - node
