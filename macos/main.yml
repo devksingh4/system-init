@@ -1,4 +1,4 @@
----
+  ---
 - name: Install MacOS Packages
   hosts: localhost
   connection: local
@@ -102,6 +102,7 @@
     - name: Upgrading Homebrew Packages
       homebrew:
         upgrade_all: "{{ upgrade_homebrew_packages }}"
+        path: /opt/homebrew/bin
       register: result
       until: result is successful
       when: homebrew_check.stat.exists
