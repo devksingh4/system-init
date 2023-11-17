@@ -22,7 +22,9 @@
       - bitwarden
       - messenger
       - miniconda
-      - background-music
+      - basictex
+      - slack
+      - zoom
     brew_packages:
       - tailscale
       - mas
@@ -32,46 +34,45 @@
       - gpg2
       - pinetry-mac
       - nvm
+      - aws-sam-cli
+      - node
+      - python
+      - cfn-lint
+      - git
     # mas_packages: 
     #   - 497799835 # xcode
     mas_packages: []
 
     upgrade_homebrew_packages: true
-  
-    dockitems_remove:
-      - Launchpad
-      - TV
-      - Podcasts
-      - 'App Store'
-      - Music
+
 
     dockitems_persist:
       - name: Google Chrome
         path: "/Applications/Google Chrome.app/"
         pos: 1
-      - name: Messages
-        path: "/Applications/Messages.app/"
-        pos: 2
-      - name: Spotify
-        path: "/Applications/Spotify.app/"
-        pos: 3
-      - name: Mail
-        path: "/System/Applications/Mail.app/"
-        pos: 4
       - name: Discord
         path: "/Applications/Discord.app/"
-        pos: 5
+        pos: 2
+      - name: Microsoft Outlook
+        path: "/Applications/Microsoft Outlook.app/"
+        pos: 3
+      - name: Spotify
+        path: "/Applications/Spotify.app/"
+        pos: 4
       - name: Messenger
         path: "/Applications/Messenger.app/"
-        pos: 6
+        pos: 5
       - name: Visual Studio Code
         path: "/Applications/Visual Studio Code.app"
+        pos: 6
+      - name: Messages
+        path: "/Applications/Messages.app/"
         pos: 7
       - name: Photos
         path: "/System/Applications/Photos.app/"
         pos: 8
-      - name: Calendar
-        path: "/System/Applications/Mail.app/"
+      - name: Slack
+        path: "/Applications/Slack.app/"
         pos: 9
       - name: Notes
         path: "/System/Applications/Notes.app/"
@@ -79,6 +80,12 @@
       - name: Terminal
         path: "/System/Applications/Utilities/Terminal.app/"
         pos: 11
+      - name: Microsoft Remote Desktop
+        path: "/Applications/Microsoft Remote Desktop.app/"
+        pos: 12
+      - name: Zoom
+        path: "/Applications/zoom.us.app/"
+        pos: 13
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
@@ -136,10 +143,10 @@
       shell: docker context create lab --docker "host=ssh://dsingh@lab.ad.devksingh.com" && docker context use lab
       register: drc
       ignore_errors: true # if the context already exists then returns 1 but that's ok
-
+    - name: Remove all from Dock
+      shell: dockutil --remove all
     - name: Setup macOS defaults
       shell: |
-        mkdir ~/.nvm
         defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
         defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
         defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true 
@@ -152,5 +159,7 @@
         defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
         defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool false
         defaults write com.apple.dock autohide-time-modifier -float 0.3
+    
   roles:
     - geerlingguy.mac.dock
+
