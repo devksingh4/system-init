@@ -120,7 +120,7 @@
       become: yes
 
     - name: Installing Homebrew Packages
-      shell: /opt/homebrew/bin/brew install {{item}}
+      shell: HOMEBREW_NO_AUTO_UPDATE=1 /opt/homebrew/bin/brew install {{item}}
       with_items: "{{ brew_packages }}"
 
     - name: Workaround to have sudo rights until timestamp_timeout is raised
