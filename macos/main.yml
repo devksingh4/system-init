@@ -47,46 +47,20 @@
 
     dockitems_remove: []
     
-    dockitems_persist:
-      - name: Google Chrome
-        path: "/Applications/Google Chrome.app/"
-        pos: 1
-      - name: Discord
-        path: "/Applications/Discord.app/"
-        pos: 2
-      - name: Microsoft Outlook
-        path: "/Applications/Microsoft Outlook.app/"
-        pos: 3
-      - name: Spotify
-        path: "/Applications/Spotify.app/"
-        pos: 4
-      - name: Messenger
-        path: "/Applications/Messenger.app/"
-        pos: 5
-      - name: Visual Studio Code
-        path: "/Applications/Visual Studio Code.app"
-        pos: 6
-      - name: Messages
-        path: "/Applications/Messages.app/"
-        pos: 7
-      - name: Photos
-        path: "/System/Applications/Photos.app/"
-        pos: 8
-      - name: Slack
-        path: "/Applications/Slack.app/"
-        pos: 9
-      - name: Notes
-        path: "/System/Applications/Notes.app/"
-        pos: 10
-      - name: Terminal
-        path: "/System/Applications/Utilities/Terminal.app/"
-        pos: 11
-      - name: Microsoft Remote Desktop
-        path: "/Applications/Microsoft Remote Desktop.app/"
-        pos: 12
-      - name: Zoom
-        path: "/Applications/zoom.us.app/"
-        pos: 13
+    dockitems:
+      - "/Applications/Google Chrome.app/"
+      - "/Applications/Discord.app/"
+      - "/Applications/Microsoft Outlook.app/"
+      - "/Applications/Spotify.app/"
+      - "/Applications/Messenger.app/"
+      - "/Applications/Visual Studio Code.app"
+      - "/Applications/Messages.app/"
+      - "/System/Applications/Photos.app/"
+      - "/Applications/Slack.app/"
+      - "/System/Applications/Notes.app/"
+      - "/System/Applications/Utilities/Terminal.app/"
+      - "/Applications/Microsoft Remote Desktop.app/"
+      - "/Applications/zoom.us.app/"
 
   pre_tasks:
     - name: Ensuring Homebrew Is Installed
@@ -141,15 +115,21 @@
         src: files/ssh_config.j2
         dest: /Users/{{ ansible_user_id }}/.ssh/config
 
-    - name: Setup docker to use SSH context by default
-      shell: docker context create lab --docker "host=ssh://dsingh@lab.ad.devksingh.com" && docker context use lab
-      register: drc
-      ignore_errors: true # if the context already exists then returns 1 but that's ok
+    - name: Workaround to have sudo rights until timestamp_timeout is raised
+      command: "echo hi"
+      become: yes
+
     - name: Remove all from Dock
-      shell: dockutil --remove all
+      shell: dockutil --remove all --no-restart
+    - name: Add items to Dock
+      shell: |
+        dockutil --add {{item}} --no-restart
+      with_items: "{{ dockitems }}"
+
     - name: Setup macOS defaults
       shell: |
         defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+        defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
         defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
         defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true 
         defaults write com.apple.dock wvous-br-corner -int 0
@@ -161,7 +141,8 @@
         defaults write com.apple.finder "FXPreferredViewStyle" -string "Nlsv"
         defaults write NSGlobalDomain "NSDocumentSaveNewDocumentsToCloud" -bool false
         defaults write com.apple.dock autohide-time-modifier -float 0.3
-    
-  roles:
-    - geerlingguy.mac.dock
+
+    - name: Restart Dock
+      shell: killall dock
+      become: yes
 
