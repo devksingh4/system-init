@@ -113,7 +113,7 @@
       with_items: "{{ mas_packages }}"
       ignore_errors: yes
     - name: Make .ssh dir
-      shell: mkdir /Users/{{ ansible_user_id }}/.ssh
+      shell: mkdir -p /Users/{{ ansible_user_id }}/.ssh
     - name: Setup .zshrc
       ansible.builtin.template:
         src: files/.zshrc.j2
