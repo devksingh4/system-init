@@ -45,6 +45,7 @@
       - python
       - cfn-lint
       - git
+      - ffmpeg
     mas_packages:
       - 803453959 # slack
       - 1480068668 # messenger
