@@ -153,7 +153,7 @@
         defaults write com.apple.dock autohide-time-modifier -float 0.3
 
     - name: Restart Dock
-      shell: killall dock
+      shell: killall Dock
       become: yes
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
