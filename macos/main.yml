@@ -111,6 +111,7 @@
     - name: Installing Mac App Store Packages
       shell: mas install {{item}}
       with_items: "{{ mas_packages }}"
+      ignore_errors: yes
 
     - name: Setup .zshrc
       ansible.builtin.template:
