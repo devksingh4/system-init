@@ -26,14 +26,10 @@
       - betterdisplay
       - rectangle
       - mouse-fix
-      - microsoft-office
       - cyberduck
       - postman
       - hpedrorodrigues/tools/dockutil
-      - bitwarden
-      - messenger
-      - basictex
-      - slack
+      - basictex 
       - zoom
     brew_packages:
       - tailscale
@@ -49,10 +45,11 @@
       - python
       - cfn-lint
       - git
-    # mas_packages: 
-    #   - 497799835 # xcode
-    mas_packages: []
-
+    mas_packages:
+      - 803453959 # slack
+      - 1480068668 # messenger
+      - 1352778147 # bitwarden
+      - 1450038993 # office
     upgrade_homebrew_packages: true
 
     dockitems_remove: []
