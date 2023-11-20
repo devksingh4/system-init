@@ -4,6 +4,17 @@
   connection: local
   become: false
   vars:
+    pip_packages:
+      - numpy
+      - matplotlib
+      - pandas
+      - scipy
+      - scikit-learn
+      - torch
+      - torchvision
+      - torchaudio
+      - pytest
+      - seaborn
     brew_cask_packages:
       - docker
       - firefox
@@ -145,17 +156,14 @@
     - name: Restart Dock
       shell: killall dock
       become: yes
-
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       become: no
+    - name: Concatenate pip install list to string
+      set_fact:
+        pip_packages_str: "{{ pip_packages | join(' ') }}"
     - name: Install pip packages
       shell: |
         eval $(/opt/homebrew/bin/brew shellenv)
-        pip3 install jupyterlab numpy scikit-learn pandas scipy
-      become: no
-    - name: Install PyTorch (this may take a while)
-      shell: |
-        eval $(/opt/homebrew/bin/brew shellenv)
-        pip3 install torch torchvision torchaudio
+        pip3 install {{ pip_packages_str }}
       become: no
