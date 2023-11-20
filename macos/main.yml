@@ -121,6 +121,7 @@
 
     - name: Remove all from Dock
       shell: dockutil --remove all --no-restart
+
     - name: Add items to Dock
       shell: |
         dockutil --add {{item}} --no-restart
@@ -145,4 +146,8 @@
     - name: Restart Dock
       shell: killall dock
       become: yes
+
+    - name: Install Oh-my-ZSH
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+      become: no
 
