@@ -149,4 +149,13 @@
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       become: no
-
+    - name: Install pip packages
+      shell: |
+        eval $(/opt/homebrew/bin/brew shellenv)
+        pip3 install jupyterlab numpy scikit-learn pandas scipy
+      become: no
+    - name: Install PyTorch (this may take a while)
+      shell: |
+        eval $(/opt/homebrew/bin/brew shellenv)
+        pip3 install torch torchvision torchaudio
+      become: no
