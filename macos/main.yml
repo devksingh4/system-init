@@ -133,7 +133,7 @@
 
     - name: Add items to Dock
       shell: |
-        dockutil --add {{item}} --no-restart
+        dockutil --add '{{item}}' --no-restart
       with_items: "{{ dockitems }}"
 
     - name: Setup macOS defaults
