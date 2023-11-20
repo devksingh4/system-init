@@ -21,7 +21,6 @@
       - hpedrorodrigues/tools/dockutil
       - bitwarden
       - messenger
-      - miniconda
       - basictex
       - slack
       - zoom
