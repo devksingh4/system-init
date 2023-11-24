@@ -11,7 +11,7 @@ bin/run.sh
 ```
 
 Post-install manual tasks:
-* **Enable FileVault**
+* **Backup FileVault key to Bitwarden and delete from Desktop**
 * Log into all 3 Google Drive accounts.
 * Copy SSH key over from Google Drive.
 * Activate BetterDisplay License and setup HiDPI.
