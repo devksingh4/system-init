@@ -115,10 +115,6 @@
       ignore_errors: yes
     - name: Make .ssh dir
       shell: mkdir -p /Users/{{ ansible_user_id }}/.ssh
-    - name: Setup .zshrc
-      ansible.builtin.template:
-        src: files/.zshrc.j2
-        dest: /Users/{{ ansible_user_id }}/.zshrc
 
     - name: Setup .ssh/config
       ansible.builtin.template:
@@ -160,6 +156,10 @@
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       become: no
+    - name: Setup .zshrc
+      ansible.builtin.template:
+        src: files/.zshrc.j2
+        dest: /Users/{{ ansible_user_id }}/.zshrc
     - name: Concatenate pip install list to string
       set_fact:
         pip_packages_str: "{{ pip_packages | join(' ') }}"
