@@ -3,6 +3,8 @@
   hosts: localhost
   connection: local
   become: false
+  roles:
+    - marcomc.macos_filevault2
   vars:
     pip_packages:
       - numpy
@@ -81,6 +83,7 @@
         update_homebrew: true
       when: homebrew_check.stat.exists
 
+  tasks:
     - name: Upgrading Homebrew Packages
       homebrew:
         upgrade_all: "{{ upgrade_homebrew_packages }}"
