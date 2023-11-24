@@ -11,6 +11,7 @@ bin/run.sh
 ```
 
 Post-install manual tasks:
+* **Enable FileVault**
 * Log into all 3 Google Drive accounts.
 * Copy SSH key over from Google Drive.
 * Activate BetterDisplay License and setup HiDPI.
@@ -20,7 +21,6 @@ Post-install manual tasks:
 * Log into Discord, Spotify
 * Log into iMessage - ensure messages are syncing
 * Sign into Code - ensure sync is enabled
-  * Setup Code remote target - Lab SSH
 
 ## Attribution
 Modified from [this repository](https://gist.github.com/mrlesmithjr/f3c15fdd53020a71f55c2032b8be2eda) and [this repository](https://github.com/geerlingguy/mac-dev-playbook/).
