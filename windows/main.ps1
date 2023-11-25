@@ -39,7 +39,7 @@ if(-not $?)
 $rootPath = "https://raw.githubusercontent.com/devksingh4/system-init/master/windows/"
 $scriptList = @(
     'winget.ps1',
-    'wsl.ps1',
+    # 'wsl.ps1',
     'config.ps1'
 );
 foreach ($script in $scriptList) {
