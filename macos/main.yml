@@ -181,7 +181,7 @@
 
     - name: Setup .zshrc
       ansible.builtin.template:
-        src: files/.zshrc.j2
+        src: files/.zshrc
         dest: /Users/{{ ansible_user_id }}/.zshrc
 
     - name: Concatenate pip install list to string

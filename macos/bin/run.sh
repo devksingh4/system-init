@@ -1,8 +1,21 @@
 #!/bin/sh
 xcode-select --install
 sudo xcodebuild -license
-/usr/sbin/softwareupdate --install-rosetta
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
+    if arch -x86_64 /usr/bin/true 2> /dev/null; then
+        echo "Rosetta Installed!"
+    else
+        echo "Rosetta Missing!"
+        /usr/sbin/softwareupdate --install-rosetta
+    fi
+else
+    echo "Rosetta Ineligible!"
+fi
+which -s brew
+if [[ $? != 0 ]] ; then
+    # Install Homebrew
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 if [[ ":$PATH:" == *":/opt/homebrew/bin:"* ]]; then
   echo "Your path is correctly set"
 else
