@@ -184,6 +184,7 @@
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       become: no
+      when: lookup('env', 'ZSH_THEME') == ""
     - name: Setup .zshrc
       ansible.builtin.template:
         src: files/.zshrc.j2
