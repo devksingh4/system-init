@@ -41,6 +41,10 @@
       - basictex 
       - zoom
       - raycast
+      - messenger
+      - slack
+      - bitwarden
+      - microsoft-office
     brew_packages:
       - tailscale
       - mas
@@ -57,11 +61,7 @@
       - git
       - ffmpeg
       - zsh
-    mas_packages:
-      - 803453959 # slack
-      - 1480068668 # messenger
-      - 1352778147 # bitwarden
-      - 1450038993 # office
+    mas_packages: []
     upgrade_homebrew_packages: true
 
     dockitems_remove: []
