@@ -10,4 +10,4 @@ else
 fi
 /opt/homebrew/bin/brew install ansible
 ansible-galaxy install -r requirements.yml
-ansible-playbook -i "localhost," -c local main.yml --ask-become-pass
+ansible-playbook -i "localhost," -c local main.yml

@@ -7,7 +7,7 @@
     - marcomc.macos_filevault2
   vars_prompt:
     - name: ansible_become_pass
-      prompt: User password
+      prompt: BECOME password
       private: true
   vars:
     filevault_showrecoverykey: yes
@@ -80,6 +80,7 @@
     dockitems_remove: []
     
     dockitems:
+      - "/System/Library/CoreServices/Finder.app"
       - "/Applications/Google Chrome.app/"
       - "/Applications/Discord.app/"
       - "/Applications/Microsoft Outlook.app/"
@@ -114,25 +115,15 @@
       until: result is successful
       when: homebrew_check.stat.exists
 
-    - name: Workaround to have sudo rights until timestamp_timeout is raised
-      command: "echo hi"
-      become: yes
-
     - name: Installing Homebrew Cask Packages
-      shell: /opt/homebrew/bin/brew install --cask {{item}}
-      with_items: "{{ brew_cask_packages }}"
-
-    - name: Workaround to have sudo rights until timestamp_timeout is raised
-      command: "echo hi"
-      become: yes
+      homebrew_cask:
+        name: "{{ brew_cask_packages }}"
+        state: present
 
     - name: Installing Homebrew Packages
-      shell: HOMEBREW_NO_AUTO_UPDATE=1 /opt/homebrew/bin/brew install {{item}}
-      with_items: "{{ brew_packages }}"
-
-    - name: Workaround to have sudo rights until timestamp_timeout is raised
-      command: "echo hi"
-      become: yes
+      homebrew:
+        name: "{{ brew_packages }}"
+        state: present
 
     - name: Installing Mac App Store Packages
       shell: mas install {{item}}
@@ -149,12 +140,12 @@
         src: files/ssh_config.j2
         dest: /Users/{{ ansible_user_id }}/.ssh/config
 
-    - name: Workaround to have sudo rights until timestamp_timeout is raised
-      command: "echo hi"
-      become: yes
-
     - name: Remove all from Dock
       shell: dockutil --remove all --no-restart
+
+    - name: Restart Dock
+      shell: killall Dock
+      become: yes
 
     - name: Add items to Dock
       shell: |
@@ -178,20 +169,25 @@
         defaults write com.apple.dock autohide-time-modifier -float 0.3
         defaults write com.apple.dock "autohide" -bool true
         defaults write com.apple.dock "tilesize" -int "48"
+
     - name: Restart Dock
       shell: killall Dock
       become: yes
+
     - name: Install Oh-my-ZSH
       shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
       become: no
-      when: lookup('env', 'ZSH_THEME') == ""
+      when: lookup('env', 'ZSH') == ""
+
     - name: Setup .zshrc
       ansible.builtin.template:
         src: files/.zshrc.j2
         dest: /Users/{{ ansible_user_id }}/.zshrc
+
     - name: Concatenate pip install list to string
       set_fact:
         pip_packages_str: "{{ pip_packages | join(' ') }}"
+
     - name: Install pip packages
       shell: |
         eval $(/opt/homebrew/bin/brew shellenv)
@@ -205,10 +201,12 @@
 
     - name: Clone git repos
       shell: |
-        cd /Users/{{ ansible_user_id }}/source
-        mkdir -p {{item.org}}
-        cd {{item.org}}
-        mkdir -p {{item.repo}}
-        git clone https://github.com/{{item.org}}/{{item.repo}}
-      with_items: github_cloned_repos
+        if [ ! -d "/Users/{{ ansible_user_id }}/source/{{item.org}}/{{item.repo}}" ] ; then
+          cd /Users/{{ ansible_user_id }}/source
+          mkdir -p {{item.org}}
+          cd {{item.org}}
+          mkdir -p {{item.repo}}
+          git clone https://github.com/{{item.org}}/{{item.repo}}
+        fi
+      loop: "{{ github_cloned_repos }} "
       ignore_errors: yes
