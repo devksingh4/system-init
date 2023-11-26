@@ -13,6 +13,19 @@
     filevault_showrecoverykey: yes
     filevault_user: "{{ ansible_user_id }}"
     filevault_user_password: "{{ ansible_become_pass }}"
+    github_cloned_repos:
+      - org: devksingh4
+        repo: system-init
+      - org: devksingh4
+        repo: web
+      - org: acm-uiuc
+        repo: acm-uiuc.github.io
+      - org: acm-uiuc
+        repo: membership-api
+      - org: acm-uiuc
+        repo: resume-book
+      - org: acm-uiuc
+        repo: ticketing
     pip_packages:
       - numpy
       - matplotlib
@@ -125,8 +138,11 @@
       shell: mas install {{item}}
       with_items: "{{ mas_packages }}"
       ignore_errors: yes
-    - name: Make .ssh dir
-      shell: mkdir -p /Users/{{ ansible_user_id }}/.ssh
+
+    - name: Create .ssh folder
+      ansible.builtin.file:
+        path: /Users/{{ ansible_user_id }}/.ssh
+        state: directory
 
     - name: Setup .ssh/config
       ansible.builtin.template:
@@ -180,3 +196,18 @@
         eval $(/opt/homebrew/bin/brew shellenv)
         pip3 install {{ pip_packages_str }}
       become: no
+
+    - name: Setup source folder
+      ansible.builtin.file:
+        path: /Users/{{ ansible_user_id }}/source
+        state: directory
+
+    - name: Clone git repos
+      shell: |
+        cd /Users/{{ ansible_user_id }}/source
+        mkdir -p {{item.org}}
+        cd {{item.org}}
+        mkdir -p {{item.repo}}
+        git clone https://github.com/{{item.org}}/{{item.repo}}
+      with_items: github_cloned_repos
+      ignore_errors: yes
