@@ -59,6 +59,8 @@
       - bitwarden
       - microsoft-office
     brew_packages:
+      - gs
+      - pdfgrep
       - tailscale
       - mas
       - nano
