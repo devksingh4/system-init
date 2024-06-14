@@ -83,7 +83,7 @@
     
     dockitems:
       - "/System/Library/CoreServices/Finder.app"
-      - "/Applications/Google Chrome.app/"
+      - "/Applications/Firefox.app/"
       - "/Applications/Discord.app/"
       - "/Applications/Microsoft Outlook.app/"
       - "/Applications/Spotify.app/"
