@@ -11,6 +11,7 @@ bin/run.sh
 ```
 
 Post-install manual tasks:
+* Install [Logitech Options+ Offline Version](https://prosupport.logi.com/hc/en-us/articles/10991109278871-Logitech-Options-Offline-Installer).
 * **Backup FileVault key to Bitwarden and delete from Desktop**
 * Log into all 3 Google Drive accounts.
 * Copy SSH key over from Google Drive.
