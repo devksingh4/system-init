@@ -38,8 +38,8 @@
       - pytest
       - seaborn
     brew_cask_packages:
+      - orion
       - docker
-      - firefox
       - google-chrome
       - google-drive
       - discord
