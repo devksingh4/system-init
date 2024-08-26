@@ -83,18 +83,17 @@
     
     dockitems:
       - "/System/Library/CoreServices/Finder.app"
-      - "/Applications/Firefox.app/"
-      - "/Applications/Discord.app/"
-      - "/Applications/Microsoft Outlook.app/"
+      - "/Applications/Google Chrome.app/"
       - "/Applications/Spotify.app/"
-      - "/Applications/Messenger.app/"
+      - "/Applications/Slack.app/"
+      - "/System/Applications/Mail.app/"
+      - "/System/Applications/Calendar.app/"
+      - "/Applications/Discord.app/"
       - "/Applications/Visual Studio Code.app"
       - "/Applications/Messages.app/"
       - "/System/Applications/Photos.app/"
-      - "/Applications/Slack.app/"
       - "/System/Applications/Notes.app/"
       - "/System/Applications/Utilities/Terminal.app/"
-      - "/Applications/Microsoft Remote Desktop.app/"
       - "/Applications/zoom.us.app/"
 
   pre_tasks:
