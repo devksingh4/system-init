@@ -172,6 +172,7 @@
         defaults write com.apple.dock "autohide" -bool true
         defaults write com.apple.dock "tilesize" -int "48"
         defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
+        defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
     - name: Restart Dock
       shell: killall Dock
