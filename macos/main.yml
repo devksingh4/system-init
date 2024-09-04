@@ -70,7 +70,7 @@
       - gpg
       - gpg2
       - pinentry-mac
-      - nvm
+      - mise
       - aws-sam-cli
       - node
       - python
