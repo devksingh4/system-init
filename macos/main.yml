@@ -37,6 +37,8 @@
       - torchaudio
       - pytest
       - seaborn
+    pipx_packages:
+      - poetry
     brew_cask_packages:
       - orion
       - docker
@@ -188,14 +190,22 @@
         src: files/.zshrc
         dest: /Users/{{ ansible_user_id }}/.zshrc
 
-    - name: Concatenate pip install list to string
+    - name: Concatenate pip and pipx install list to string
       set_fact:
         pip_packages_str: "{{ pip_packages | join(' ') }}"
+        pipx_packages_str: "{{ pipx_packages | join(' ') }}"
 
     - name: Install pip packages
       shell: |
         eval $(/opt/homebrew/bin/brew shellenv)
         pip3 install {{ pip_packages_str }}
+      become: no
+
+    - name: Install pipx packages
+      shell: |
+        eval $(/opt/homebrew/bin/brew shellenv)
+        pipx ensurepath
+        pipx install {{ pipx_packages_str }}
       become: no
 
     - name: Setup source folder
