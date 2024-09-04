@@ -76,6 +76,7 @@
       - git
       - ffmpeg
       - zsh
+      - pipx
     mas_packages: []
     upgrade_homebrew_packages: true
 
