@@ -32,9 +32,6 @@
       - pandas
       - scipy
       - scikit-learn
-      - torch
-      - torchvision
-      - torchaudio
       - pytest
       - seaborn
     pipx_packages:
@@ -52,7 +49,6 @@
       - mac-mouse-fix
       - cyberduck
       - postman
-      - hpedrorodrigues/tools/dockutil
       - basictex 
       - zoom
       - raycast
@@ -77,6 +73,8 @@
       - ffmpeg
       - zsh
       - pipx
+      - graphviz
+      - dockutil
     mas_packages:
       - 1352778147 # Bitwarden
       - 1475387142 # Tailscale 
@@ -143,6 +141,17 @@
         src: files/ssh_config.j2
         dest: /Users/{{ ansible_user_id }}/.ssh/config
 
+    - name: Create RectangleConfig folder
+      ansible.builtin.file:
+        path: /Users/{{ ansible_user_id }}/Library/Application Support/Rectangle
+        state: directory
+
+    - name: Setup RectangleConfig
+      ansible.builtin.template:
+        src: files/RectangleConfig.json
+        dest: /Users/{{ ansible_user_id }}/Library/Application Support/Rectangle/RectangleConfig.json
+      ignore_errors: yes
+
     - name: Remove all from Dock
       shell: dockutil --remove all --no-restart
 
@@ -154,6 +163,10 @@
       shell: |
         dockutil --add '{{item}}' --no-restart
       with_items: "{{ dockitems }}"
+
+    - name: Restart Dock
+      shell: killall Dock
+      become: yes
 
     - name: Setup macOS defaults
       shell: |
@@ -197,15 +210,21 @@
 
     - name: Install pip packages
       shell: |
-        eval $(/opt/homebrew/bin/brew shellenv)
+        eval "$(mise activate)"
+        mise install python@latest
+        mise use -g python@latest
         pip3 install {{ pip_packages_str }}
+      args:
+        executable: /bin/zsh
       become: no
 
     - name: Install pipx packages
       shell: |
-        eval $(/opt/homebrew/bin/brew shellenv)
+        eval "$(mise activate)"
         pipx ensurepath
         pipx install {{ pipx_packages_str }}
+      args:
+        executable: /bin/zsh
       become: no
 
     - name: Install nvm

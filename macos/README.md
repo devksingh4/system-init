@@ -11,7 +11,6 @@ bin/run.sh
 ```
 
 Post-install manual tasks:
-* Install [Logitech Options+ Offline Version](https://prosupport.logi.com/hc/en-us/articles/10991109278871-Logitech-Options-Offline-Installer).
 * **Backup FileVault key to Bitwarden and delete from Desktop**
 * Log into all 3 Google Drive accounts.
 * Copy SSH key over from Google Drive.
@@ -22,6 +21,7 @@ Post-install manual tasks:
 * Log into Discord, Spotify
 * Log into iMessage - ensure messages are syncing
 * Sign into Code - ensure sync is enabled
+* Launch noTunes on startup
 
 ## Attribution
 Modified from [this repository](https://gist.github.com/mrlesmithjr/f3c15fdd53020a71f55c2032b8be2eda) and [this repository](https://github.com/geerlingguy/mac-dev-playbook/).

@@ -1,5 +1,6 @@
 #!/bin/sh
 xcode-select --install
+set -e
 sudo xcodebuild -license
 if [[ "$(sysctl -n machdep.cpu.brand_string)" == *'Apple'* ]]; then
     if arch -x86_64 /usr/bin/true 2> /dev/null; then
@@ -23,5 +24,5 @@ else
 fi
 /opt/homebrew/bin/brew install ansible
 ansible-galaxy install -r requirements.yml
-ansible-playbook -i "localhost," -c local main.yml
+ansible-playbook -i "localhost," -c local main.yml -vv
 bin/logioptions.sh # install logitech options+ offline version
