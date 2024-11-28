@@ -60,6 +60,7 @@
       - slack
       - bitwarden
       - microsoft-office
+      - notunes
     brew_packages:
       - gs
       - pdfgrep
@@ -175,6 +176,7 @@
         defaults write com.apple.dock "tilesize" -int "48"
         defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
         defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+        defaults write digital.twisted.noTunes replacement /Applications/Spotify.app
 
     - name: Restart Dock
       shell: killall Dock
