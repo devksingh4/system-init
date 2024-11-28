@@ -40,9 +40,9 @@
     pipx_packages:
       - poetry
     brew_cask_packages:
-      - orion
       - docker
       - google-chrome
+      - firefox
       - google-drive
       - discord
       - spotify
@@ -58,13 +58,11 @@
       - raycast
       - messenger
       - slack
-      - bitwarden
       - microsoft-office
       - notunes
     brew_packages:
       - gs
       - pdfgrep
-      - tailscale
       - mas
       - nano
       - wget
@@ -73,30 +71,30 @@
       - pinentry-mac
       - mise
       - aws-sam-cli
-      - node
       - python
       - cfn-lint
       - git
       - ffmpeg
       - zsh
       - pipx
-    mas_packages: []
+    mas_packages:
+      - 1352778147 # Bitwarden
+      - 1475387142 # Tailscale 
+      - 360593530 # Notability
+      
     upgrade_homebrew_packages: true
 
     dockitems_remove: []
     
     dockitems:
       - "/System/Library/CoreServices/Finder.app"
-      - "/Applications/Google Chrome.app/"
+      - "/Applications/Firefox.app/"
       - "/Applications/Spotify.app/"
       - "/Applications/Slack.app/"
-      - "/System/Applications/Mail.app/"
-      - "/System/Applications/Calendar.app/"
       - "/Applications/Discord.app/"
       - "/Applications/Visual Studio Code.app"
       - "/Applications/Messages.app/"
       - "/System/Applications/Photos.app/"
-      - "/System/Applications/Notes.app/"
       - "/System/Applications/Utilities/Terminal.app/"
       - "/Applications/zoom.us.app/"
 
@@ -209,6 +207,23 @@
         pipx ensurepath
         pipx install {{ pipx_packages_str }}
       become: no
+
+    - name: Install nvm
+      become: no
+      shell: >
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.1/install.sh | bash
+      args:
+        executable: /bin/zsh
+        chdir: "$HOME"
+        creates: "$HOME/.nvm/nvm.sh"
+
+    - name: Install Node LTS
+      become: no
+      shell: >
+        . /Users/{{ ansible_user_id }}/.nvm/nvm.sh && nvm install --lts && nvm use --lts
+      args:
+        executable: /bin/zsh
+        chdir: "/Users/{{ ansible_user_id }}"
 
     - name: Setup source folder
       ansible.builtin.file:
