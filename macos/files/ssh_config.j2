@@ -2,6 +2,11 @@ Host *
     UseKeychain yes
     AddKeysToAgent yes
 
-Host *illinois.edu
+Host linux.ews.illinois.edu
     User dsingh14
     PreferredAuthentications publickey,keyboard-interactive,password
+
+Host *.cs.illinois.edu
+    User dsingh14
+    PreferredAuthentications publickey,keyboard-interactive,password
+    ProxyJump linux.ews.illinois.edu
