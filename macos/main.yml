@@ -56,6 +56,7 @@
       - slack
       - microsoft-office
       - notunes
+      - bitwarden
     brew_packages:
       - gs
       - pdfgrep
@@ -76,7 +77,6 @@
       - graphviz
       - dockutil
     mas_packages:
-      - 1352778147 # Bitwarden
       - 1475387142 # Tailscale 
       - 360593530 # Notability
       
