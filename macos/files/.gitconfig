@@ -1,7 +1,7 @@
 [user]
 	name = Dev Singh
 	email = dev@devksingh.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA4qz4IUNX1zTCG2QGWP0OFRA4xPTu0hx6rLR8R1IFLw
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG0QsCelg03G+vACSeh8TT0UwuaVGFSdXOMJk2WQe7n9
 [gpg]
 	format = ssh
 [commit]
