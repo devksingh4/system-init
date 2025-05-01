@@ -16,16 +16,10 @@
     github_cloned_repos:
       - org: devksingh4
         repo: system-init
-      - org: devksingh4
-        repo: web
       - org: acm-uiuc
-        repo: acm-uiuc.github.io
+        repo: website
       - org: acm-uiuc
-        repo: membership-api
-      - org: acm-uiuc
-        repo: resume-book
-      - org: acm-uiuc
-        repo: ticketing
+        repo: core
     pip_packages:
       - numpy
       - matplotlib
@@ -57,6 +51,8 @@
       - microsoft-office
       - notunes
       - bitwarden
+      - mongodb-compass
+      - pgadmin4
     brew_packages:
       - gs
       - pdfgrep
