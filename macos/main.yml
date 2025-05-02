@@ -72,6 +72,8 @@
       - pipx
       - graphviz
       - dockutil
+      - nvm
+      - miniconda
     mas_packages:
       - 1475387142 # Tailscale 
       - 360593530 # Notability
@@ -200,46 +202,6 @@
         src: files/.zshrc
         dest: /Users/{{ ansible_user_id }}/.zshrc
 
-    - name: Concatenate pip and pipx install list to string
-      set_fact:
-        pip_packages_str: "{{ pip_packages | join(' ') }}"
-        pipx_packages_str: "{{ pipx_packages | join(' ') }}"
-
-    - name: Install pip packages
-      shell: |
-        eval "$(mise activate)"
-        mise install python@latest
-        mise use -g python@latest
-        pip3 install {{ pip_packages_str }}
-      args:
-        executable: /bin/zsh
-      become: no
-
-    - name: Install pipx packages
-      shell: |
-        eval "$(mise activate)"
-        pipx ensurepath
-        pipx install {{ pipx_packages_str }}
-      args:
-        executable: /bin/zsh
-      become: no
-
-    - name: Install nvm
-      become: no
-      shell: >
-        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.1/install.sh | bash
-      args:
-        executable: /bin/zsh
-        chdir: "$HOME"
-        creates: "$HOME/.nvm/nvm.sh"
-
-    - name: Install Node LTS
-      become: no
-      shell: >
-        . /Users/{{ ansible_user_id }}/.nvm/nvm.sh && nvm install --lts && nvm use --lts
-      args:
-        executable: /bin/zsh
-        chdir: "/Users/{{ ansible_user_id }}"
 
     - name: Setup source folder
       ansible.builtin.file:
