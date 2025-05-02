@@ -74,6 +74,7 @@
       - dockutil
       - nvm
       - miniconda
+      - gh
     mas_packages:
       - 1475387142 # Tailscale 
       - 360593530 # Notability
