@@ -76,8 +76,8 @@
       - nvm
       - miniconda
       - gh
+      - tailscale
     mas_packages:
-      - 1475387142 # Tailscale 
       - 360593530 # Notability
       
     upgrade_homebrew_packages: true
