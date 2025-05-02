@@ -53,6 +53,7 @@
       - notunes
       - mongodb-compass
       - pgadmin4
+      - bitwarden
     brew_packages:
       - gs
       - pdfgrep
@@ -78,7 +79,6 @@
     mas_packages:
       - 1475387142 # Tailscale 
       - 360593530 # Notability
-      - 1352778147 # Bitwarden
       
     upgrade_homebrew_packages: true
 
