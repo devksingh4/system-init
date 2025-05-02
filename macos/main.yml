@@ -51,7 +51,6 @@
       - slack
       - microsoft-office
       - notunes
-      - bitwarden
       - mongodb-compass
       - pgadmin4
     brew_packages:
@@ -76,6 +75,7 @@
     mas_packages:
       - 1475387142 # Tailscale 
       - 360593530 # Notability
+      - 1352778147 # Bitwarden
       
     upgrade_homebrew_packages: true
 
