@@ -111,5 +111,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-export SSH_AUTH_SOCK=/Users/dsingh14/.bitwarden-ssh-agent.sock
+export SSH_AUTH_SOCK=/Users/dsingh14/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock
 
