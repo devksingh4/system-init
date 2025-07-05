@@ -34,6 +34,7 @@
       - docker
       - google-chrome
       - firefox
+      - zen
       - google-drive
       - discord
       - spotify
