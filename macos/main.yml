@@ -35,6 +35,8 @@
       - miniconda
       - gh
       - colima
+      - docker
+      - lima-additional-guestagents
 
     brew_cask_packages:
       - eternal-dissident/tap/logi-options-offline
