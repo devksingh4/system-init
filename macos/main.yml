@@ -81,18 +81,29 @@
 
     # ==> Dock Configuration
     dockitems_to_add:
-      - "/System/Library/CoreServices/Finder.app"
       - "/Applications/Firefox.app"
       - "/Applications/Spotify.app"
       - "/Applications/Slack.app"
       - "/Applications/Discord.app"
       - "/Applications/Visual Studio Code.app"
       - "/Applications/Messages.app"
-      - "/System/Applications/Photos.app"
       - "/System/Applications/Utilities/Terminal.app"
       - "/Applications/zoom.us.app"
 
   pre_tasks:
+    - name: Check for Rosetta.
+      raw: test -e /Library/Apple/usr/libexec/oah/libRosettaRuntime
+      register: rosetta_present
+      failed_when: false
+      changed_when: false
+    - name: Check architecture.
+      raw: arch
+      register: cpu_arch
+      changed_when: false
+    - name: Install Rosetta on ARM machines if absent
+      become: true
+      when: rosetta_present.rc != 0 and cpu_arch.stdout_lines[0] == "arm64"
+      raw: softwareupdate --install-rosetta --agree-to-license
     - name: Check if Homebrew is installed
       stat:
         path: /opt/homebrew/bin/brew
@@ -129,6 +140,10 @@
       community.general.mas:
         id: "{{ item.id }}"
         state: present
+
+    - name: Setup Anaconda 
+      ansible.builtin.command: conda init zsh
+      become: false
 
     - name: Install Pip packages
       ansible.builtin.pip:
@@ -194,16 +209,13 @@
 
     # ==> Dock Management
     - name: Clear all items from the Dock
-      community.general.dockutil:
-        state: "absent"
-        path: "*"
+      shell: dockutil --remove all --no-restart
       notify: Restart Dock
 
     - name: Add items to the Dock
-      community.general.dockutil:
-        path: "{{ item }}"
-        state: "present"
-      loop: "{{ dockitems_to_add }}"
+      shell: |
+        dockutil --add '{{item}}' --no-restart
+      with_items: "{{ dockitems_to_add }}"
       notify: Restart Dock
 
     # ==> Git Repository Cloning
