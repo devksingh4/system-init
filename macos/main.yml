@@ -10,8 +10,6 @@
       private: true
 
   vars:
-    filevault_user: "{{ ansible_user_id }}"
-    filevault_user_password: "{{ ansible_become_pass }}"
     upgrade_homebrew_packages: true
 
     # ==> Package Lists
@@ -21,8 +19,7 @@
       - mas
       - nano
       - wget
-      - gpg
-      - gpg2
+      - gnupg
       - pinentry-mac
       - mise
       - aws-sam-cli
@@ -117,17 +114,16 @@
 
     # ==> Package Installations (with verbose output)
     - name: Install Homebrew packages
-      loop: "{{ brew_packages }}"
       community.general.homebrew:
-        name: "{{ item }}"
+        name: "{{ brew_packages }}"
         state: present
       register: brew_install_result
+    
 
     - name: Install Homebrew Cask packages
-      loop: "{{ brew_cask_packages }}"
-      community.general.homebrew:
-        name: "{{ item }}"
-        cask: true
+      community.general.homebrew_cask:
+        name: "{{ brew_cask_packages }}"
+        sudo_password: "{{ ansible_become_pass }}"
         state: present
       register: cask_install_result
 
