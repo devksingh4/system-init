@@ -40,18 +40,19 @@
       - tailscale
 
     brew_cask_packages:
-      - docker
-      - google-chrome
-      - firefox
-      - google-drive
+      - eternal-dissident/tap/logi-options-offline
       - discord
       - spotify
       - visual-studio-code
+      - firefox
+      - docker
+      - google-chrome
+      - google-drive
       - alt-tab
       - betterdisplay
       - rectangle
       - cyberduck
-      - postman
+      - hoppscotch
       - basictex
       - zoom
       - raycast
