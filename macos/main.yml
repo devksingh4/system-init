@@ -34,7 +34,6 @@
       - nvm
       - miniconda
       - gh
-      - tailscale
 
     brew_cask_packages:
       - eternal-dissident/tap/logi-options-offline
@@ -60,6 +59,7 @@
       - mongodb-compass
       - pgadmin4
       - bitwarden
+      - tailscale
 
     mas_packages:
       - { name: "Notability", id: 360593530 }
