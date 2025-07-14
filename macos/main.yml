@@ -73,9 +73,6 @@
       - pytest
       - seaborn
 
-    pipx_packages:
-      - poetry
-
     # ==> Git Repositories
     github_cloned_repos:
       - { org: "devksingh4", repo: "system-init" }
@@ -131,12 +128,6 @@
       loop: "{{ mas_packages }}"
       community.general.mas:
         id: "{{ item.id }}"
-        state: present
-
-    - name: Install Pipx packages
-      loop: "{{ pipx_packages }}"
-      community.general.pipx:
-        name: "{{ item }}"
         state: present
 
     - name: Install Pip packages
