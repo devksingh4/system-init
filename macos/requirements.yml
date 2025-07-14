@@ -2,5 +2,3 @@ collections:
   - name: https://github.com/ansible-collections/community.general.git
     type: git
     version: main
-roles:
-  - name: marcomc.macos_filevault2
