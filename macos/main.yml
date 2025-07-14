@@ -34,6 +34,7 @@
       - nvm
       - miniconda
       - gh
+      - colima
 
     brew_cask_packages:
       - eternal-dissident/tap/logi-options-offline
@@ -41,7 +42,6 @@
       - spotify
       - visual-studio-code
       - firefox
-      - docker
       - google-chrome
       - google-drive
       - alt-tab
