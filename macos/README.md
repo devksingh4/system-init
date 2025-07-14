@@ -11,9 +11,9 @@ bin/run.sh
 ```
 
 Post-install manual tasks:
-* **Backup FileVault key to Bitwarden and delete from Desktop**
+* **Ensure FileVault is activated**
 * Log into all 3 Google Drive accounts.
-* Copy SSH key over from Google Drive.
+* Log into Bitwarden desktop and enable SSH agent.
 * Activate BetterDisplay License and setup HiDPI.
 * Log into Tailscale
 * Setup Mac Mouse Fix
