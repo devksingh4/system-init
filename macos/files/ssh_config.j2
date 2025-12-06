@@ -5,7 +5,9 @@ Host linux.ews.illinois.edu
     User dsingh14
     PreferredAuthentications publickey,keyboard-interactive,password
 
-Host *.cs.illinois.edu
+Host *.cs.illinois.edu !linux.ews.illinois.edu
     User dsingh14
     PreferredAuthentications publickey,keyboard-interactive,password
-    ProxyJump linux.ews.illinois.edu
+    Match host *.cs.illinois.edu,!linux.ews.illinois.edu exec "! ping -c 1 -W 0.2 %h >/dev/null 2>&1"
+        ProxyJump linux.ews.illinois.edu
+
